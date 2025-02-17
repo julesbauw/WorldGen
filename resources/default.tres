@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Biome" load_steps=2 format=3 uid="uid://bmsl2nblwkgdy"]
+
+[ext_resource type="Script" path="res://scripts/biome.gd" id="1_pshaw"]
+
+[resource]
+script = ExtResource("1_pshaw")
+freq = 0.1
+tiles = Array[int]([0, 1, 2])

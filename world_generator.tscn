@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://bf8mc6nm7mq54"]
+
+[ext_resource type="Script" path="res://WorldGenerator.gd" id="1_5qtls"]
+[ext_resource type="Resource" uid="uid://bmsl2nblwkgdy" path="res://resources/default.tres" id="2_1cmyy"]
+[ext_resource type="Texture2D" uid="uid://bcxxhi8ex7x03" path="res://sprites/yellowman2.png" id="2_oaw40"]
+[ext_resource type="Script" path="res://camera_move.gd" id="3_dawey"]
+[ext_resource type="Script" path="res://player.gd" id="5_5jxgl"]
+[ext_resource type="Texture2D" uid="uid://bjp70sdj4to5j" path="res://icon.svg" id="6_qw8o1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yvs4e"]
+texture = ExtResource("2_oaw40")
+margins = Vector2i(0, 5)
+texture_region_size = Vector2i(6, 6)
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+3:4/0 = 0
+2:4/0 = 0
+1:4/0 = 0
+0:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+4:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_c6kyt"]
+tile_size = Vector2i(6, 6)
+sources/0 = SubResource("TileSetAtlasSource_yvs4e")
+
+[node name="WorldGenerator" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_5qtls")
+current_biome = ExtResource("2_1cmyy")
+player = NodePath("player")
+metadata/_edit_horizontal_guides_ = [226.0]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_c6kyt")
+format = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+script = ExtResource("3_dawey")
+
+[node name="player" type="Node2D" parent="."]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("5_5jxgl")
+
+[node name="Sprite2D" type="Sprite2D" parent="player"]
+texture = ExtResource("6_qw8o1")
