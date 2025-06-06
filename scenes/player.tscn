@@ -4,8 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://xb1pf61l3pnp" path="res://sprites/robot_animations.png" id="2_qbpdx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xdric"]
-radius = 5.0
-height = 21.66
+height = 50.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1r6g6"]
 animation = &"idle_down"
@@ -451,15 +450,16 @@ _data = {
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_l5num")
-speed = 100.0
+speed = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
 texture = ExtResource("2_qbpdx")
 hframes = 4
 vframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(1, 7)
 shape = SubResource("CapsuleShape2D_xdric")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

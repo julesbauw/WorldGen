@@ -19,17 +19,28 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 
+	# movement
 	var input_direction = Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_raw_strength("up")
 	)
 	
+	#animation
 	pick_new_state(input_direction)
 	
 	if (input_direction != Vector2.ZERO):
 		animation_tree.set(walk_node_path,input_direction)
 		animation_tree.set(idle_node_path,input_direction)
 		move(input_direction)
+
+	#actions
+
+	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
+		set_block(get_global_mouse_position(),0)
+	
+	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)):
+		set_block(get_global_mouse_position(),1)
+	
 
 
 func pick_new_state(direction:Vector2):

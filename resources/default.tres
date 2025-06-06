@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_pshaw")
 freq = 0.1
-tiles = Array[int]([0, 1, 2])
+tiles = Array[int]([0, 1])

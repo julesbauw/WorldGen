@@ -1,8 +1,11 @@
 extends Node2D
 
-const wall_layer = 0
+class_name WorldGenerator
+
+const floor_layer = 0
+const wall_layer = 1
 const chunk_size = 32
-const tilesize = 6
+const tilesize = 32
 #field
 @export var current_biome:Biome
 @export var player:Node2D
@@ -13,7 +16,8 @@ var current_player_chunk:Vector2i
 
 var neighbours:Array[Vector2i] = []
 var noise_generator: FastNoiseLite
-var tiles = [Vector2i(4,2),Vector2i(1,3),Vector2i(0,3),Vector2i(3,3)]
+var tiles = [Vector2i(8,0),Vector2i(1,2)]
+var floor_tiles = [Vector2i(8,0),Vector2i(0,0)]
 
 # Called when the node enters the scene tree for the first time.
 func _init_neighbours(dist:int):
@@ -32,7 +36,17 @@ func _ready() -> void:
 	load_chunk(Vector2i(0,0))
 	current_player_chunk = get_player_chunk()
 
-	
+func set_tile(chunk_coord:Vector2i,coord:Vector2i,tile_value:int):
+	if !(chunk_coord in loaded_chunks.keys()):
+		return
+	loaded_chunks[chunk_coord][coord.x][coord.y] = tile_value
+	if tile_value == 0:
+		$TileMap.erase_cell(wall_layer,Vector2i(chunk_size * chunk_coord.x + coord.x,chunk_size * chunk_coord.y + coord.y))
+	else:
+		$TileMap.set_cell(wall_layer,Vector2i(chunk_size * chunk_coord.x + coord.x,chunk_size * chunk_coord.y + coord.y),0,tiles[tile_value])
+
+
+
 func remove_chunk(coord:Vector2i):
 	save_chunk_file(coord)
 	for x in chunk_size:
@@ -47,6 +61,11 @@ func unload_chunks():
 			removed.append(chunk)
 	for chunk in removed:
 		loaded_chunks.erase(chunk)
+
+func save_game():
+	for chunk in loaded_chunks.keys():
+		save_chunk_file(chunk)
+
 func save_chunk_file(coord:Vector2i):
 	if (!(coord in loaded_chunks)):
 		print("can't remove unloaded chunk")
@@ -79,6 +98,7 @@ func load_chunk(coord:Vector2i):
 		
 	for x in chunk_size:
 		for y in chunk_size:
+			#$TileMap.set_cell(floor_layer,Vector2i(chunk_size * coord.x + x,chunk_size * coord.y + y),0,Vector2i(0,0))
 			$TileMap.set_cell(wall_layer,Vector2i(chunk_size * coord.x + x,chunk_size * coord.y + y),0,tiles[loaded_chunks[coord][x][y]])
 	
 func load_chunks(coord:Vector2i):
@@ -124,3 +144,14 @@ func _process(_delta: float) -> void:
 		unload_chunks()
 		load_chunks(player_chunk)
 		
+
+
+
+## game save bij aflsuiten
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		print("Gebruiker wil afsluiten!")
+		# Doe hier je cleanup/logica, bv.:
+		save_game()
+		# En dan handmatig afsluiten:
+		get_tree().quit()
