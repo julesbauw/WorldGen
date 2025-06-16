@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Biome" load_steps=10 format=3 uid="uid://bmsl2nblwkgdy"]
+
+[ext_resource type="Script" path="res://scripts/ore.gd" id="1_oh4tu"]
+[ext_resource type="Script" path="res://scripts/biome.gd" id="1_pshaw"]
+[ext_resource type="Resource" uid="uid://dtmde4wopw1cq" path="res://resources/blocks/iron_ore_block.tres" id="2_bchji"]
+[ext_resource type="Script" path="res://scripts/block.gd" id="2_eguhf"]
+[ext_resource type="Resource" uid="uid://crah117s7tafj" path="res://resources/blocks/empty.tres" id="3_3j0sn"]
+[ext_resource type="Resource" uid="uid://cr1g5d6m8skeh" path="res://resources/blocks/gold_ore_block.tres" id="3_w1m2n"]
+[ext_resource type="Resource" uid="uid://qwtnmskfeoxr" path="res://resources/blocks/stone.tres" id="4_p5trl"]
+
+[sub_resource type="Resource" id="Resource_vkiqq"]
+script = ExtResource("1_oh4tu")
+rarity = 0.65
+block = ExtResource("2_bchji")
+
+[sub_resource type="Resource" id="Resource_ck5cj"]
+script = ExtResource("1_oh4tu")
+rarity = 0.8
+block = ExtResource("3_w1m2n")
+
+[resource]
+script = ExtResource("1_pshaw")
+freq = 0.05
+tiles = Array[ExtResource("2_eguhf")]([ExtResource("3_3j0sn"), ExtResource("4_p5trl")])
+ores = Array[ExtResource("1_oh4tu")]([SubResource("Resource_vkiqq"), SubResource("Resource_ck5cj")])
+ore_frequency = 0.1

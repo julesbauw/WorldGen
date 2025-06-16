@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://xb1pf61l3pnp" path="res://sprites/robot_animations.png" id="2_qbpdx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xdric"]
-height = 50.0
+radius = 8.0
+height = 42.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1r6g6"]
 animation = &"idle_down"
@@ -453,6 +454,7 @@ script = ExtResource("1_l5num")
 speed = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
 scale = Vector2(2, 2)
 texture = ExtResource("2_qbpdx")
 hframes = 4

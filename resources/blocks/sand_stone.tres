@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Block" load_steps=2 format=3 uid="uid://cnnxwbdw8m4o2"]
+
+[ext_resource type="Script" path="res://scripts/block.gd" id="1_6vfjv"]
+
+[resource]
+script = ExtResource("1_6vfjv")
+name = "sandstone block"
+block_number = 2
+block_location = Vector2i(6, 2)
+is_empty = false

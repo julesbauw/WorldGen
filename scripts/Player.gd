@@ -7,6 +7,8 @@ const walk_node_path = "parameters/walk/blend_position"
 
 const start_direction:Vector2 = Vector2(0,1)
 
+var selected_block = 1
+
 @onready var animation_tree = $AnimationTree
 @onready var animation_state_machine:AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 
@@ -35,11 +37,19 @@ func _physics_process(_delta: float) -> void:
 
 	#actions
 
+	if Input.is_action_just_released("MWU"):
+		selected_block = fposmod((selected_block + 1),BlockManager.block_map.size())
+		print(selected_block)
+
+	if Input.is_action_just_released("MWD"):
+		selected_block = fposmod((selected_block - 1),BlockManager.block_map.size())
+		print(selected_block)
+
 	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
 		set_block(get_global_mouse_position(),0)
 	
 	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)):
-		set_block(get_global_mouse_position(),1)
+		set_block(get_global_mouse_position(),selected_block)
 	
 
 

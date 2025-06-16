@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Block" load_steps=2 format=3 uid="uid://cu55e8ypr6rl4"]
+
+[ext_resource type="Script" path="res://scripts/block.gd" id="1_c7jm0"]
+
+[resource]
+script = ExtResource("1_c7jm0")
+name = "ice stone block"
+block_number = 3
+block_location = Vector2i(1, 6)
+is_empty = false
