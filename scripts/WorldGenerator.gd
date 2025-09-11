@@ -45,7 +45,7 @@ func _ready() -> void:
 	temperature_noise_generator.noise_type = FastNoiseLite.TYPE_PERLIN
 	temperature_noise_generator.fractal_type = FastNoiseLite.FRACTAL_FBM
 	temperature_noise_generator.fractal_octaves = 5
-	temperature_noise_generator.frequency = 0.005
+	temperature_noise_generator.frequency = 0.004
 
 	loaded_chunks = {}
 	load_chunks(Vector2i(0,0))
@@ -58,7 +58,7 @@ func set_tile(chunk_coord:Vector2i,coord:Vector2i,tile_value:int):
 	if tile_value == 0:
 		$TileMap.erase_cell(wall_layer,Vector2i(chunk_size * chunk_coord.x + coord.x,chunk_size * chunk_coord.y + coord.y))
 	else:
-		$TileMap.set_cell(wall_layer,Vector2i(chunk_size * chunk_coord.x + coord.x,chunk_size * chunk_coord.y + coord.y),0,get_block_vector(tile_value)) 
+		$TileMap.set_cell(wall_layer,Vector2i(chunk_size * chunk_coord.x + coord.x,chunk_size * chunk_coord.y + coord.y),1,get_block_vector(tile_value)) 
 
 
 
@@ -114,7 +114,7 @@ func load_chunk(coord:Vector2i):
 	for x in chunk_size:
 		for y in chunk_size:
 			#$TileMap.set_cell(floor_layer,Vector2i(chunk_size * coord.x + x,chunk_size * coord.y + y),0,Vector2i(0,0))
-			$TileMap.set_cell(wall_layer,Vector2i(chunk_size * coord.x + x,chunk_size * coord.y + y),0,get_block_vector(loaded_chunks[coord][x][y]))
+			$TileMap.set_cell(wall_layer,Vector2i(chunk_size * coord.x + x,chunk_size * coord.y + y),1,get_block_vector(loaded_chunks[coord][x][y]))
 	
 func load_chunks(coord:Vector2i):
 		for neighbour in neighbours:
@@ -160,9 +160,9 @@ func generate_tile(x:int,y:int) -> int:
 #1D biome mapper
 func get_biome(x:int,y:int) -> Biome:
 	var noise = temperature_noise_generator.get_noise_2d(x,y)
-	if noise < -0.25:
+	if noise < -0.15:
 		return biomes[0]
-	elif noise < 0.4:
+	elif noise < 0.20:
 		return biomes[1]
 	else:
 		return biomes[2]
