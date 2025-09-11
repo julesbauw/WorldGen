@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Biome" load_steps=10 format=3 uid="uid://bmsl2nblwkgdy"]
 
-[ext_resource type="Script" path="res://scripts/ore.gd" id="1_oh4tu"]
-[ext_resource type="Script" path="res://scripts/biome.gd" id="1_pshaw"]
+[ext_resource type="Script" uid="uid://bvn7ba2f3vypd" path="res://scripts/ore.gd" id="1_oh4tu"]
+[ext_resource type="Script" uid="uid://bphs21oy1tfeg" path="res://scripts/biome.gd" id="1_pshaw"]
 [ext_resource type="Resource" uid="uid://dtmde4wopw1cq" path="res://resources/blocks/iron_ore_block.tres" id="2_bchji"]
-[ext_resource type="Script" path="res://scripts/block.gd" id="2_eguhf"]
+[ext_resource type="Script" uid="uid://cnpbc3n71wib7" path="res://scripts/block.gd" id="2_eguhf"]
 [ext_resource type="Resource" uid="uid://crah117s7tafj" path="res://resources/blocks/empty.tres" id="3_3j0sn"]
 [ext_resource type="Resource" uid="uid://cr1g5d6m8skeh" path="res://resources/blocks/gold_ore_block.tres" id="3_w1m2n"]
 [ext_resource type="Resource" uid="uid://qwtnmskfeoxr" path="res://resources/blocks/stone.tres" id="4_p5trl"]

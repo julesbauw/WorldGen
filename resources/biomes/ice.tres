@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Biome" load_steps=7 format=3 uid="uid://er018ctlys3d"]
 
-[ext_resource type="Script" path="res://scripts/ore.gd" id="1_6spoe"]
-[ext_resource type="Script" path="res://scripts/biome.gd" id="1_jydio"]
-[ext_resource type="Script" path="res://scripts/block.gd" id="2_kkfe4"]
+[ext_resource type="Script" uid="uid://bvn7ba2f3vypd" path="res://scripts/ore.gd" id="1_6spoe"]
+[ext_resource type="Script" uid="uid://bphs21oy1tfeg" path="res://scripts/biome.gd" id="1_jydio"]
+[ext_resource type="Script" uid="uid://cnpbc3n71wib7" path="res://scripts/block.gd" id="2_kkfe4"]
 [ext_resource type="Resource" uid="uid://crah117s7tafj" path="res://resources/blocks/empty.tres" id="3_t4nyh"]
 [ext_resource type="Resource" uid="uid://cu55e8ypr6rl4" path="res://resources/blocks/ice_stone.tres" id="4_bsqvb"]
 [ext_resource type="Resource" uid="uid://cehicw2646lq8" path="res://resources/blocks/snow_block.tres" id="6_47pmq"]

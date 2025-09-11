@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://ytt67m4hw7ah"]
 
-[ext_resource type="Script" path="res://scripts/WorldGenerator.gd" id="1_kwui4"]
-[ext_resource type="Script" path="res://scripts/biome.gd" id="2_6vb71"]
+[ext_resource type="Script" uid="uid://c1w2ojsd7pywp" path="res://scripts/WorldGenerator.gd" id="1_kwui4"]
+[ext_resource type="Script" uid="uid://bphs21oy1tfeg" path="res://scripts/biome.gd" id="2_6vb71"]
 [ext_resource type="PackedScene" uid="uid://bh4hed165gdq7" path="res://scenes/player.tscn" id="3_gcga7"]
 [ext_resource type="Resource" uid="uid://er018ctlys3d" path="res://resources/biomes/ice.tres" id="3_hu5gn"]
 [ext_resource type="Resource" uid="uid://bmsl2nblwkgdy" path="res://resources/biomes/default.tres" id="4_afa3c"]
@@ -141,7 +141,6 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_1i0hr")
 
 [node name="worldGenerator" type="Node2D" node_paths=PackedStringArray("player")]
-position = Vector2(1, 0)
 script = ExtResource("1_kwui4")
 biomes = Array[ExtResource("2_6vb71")]([ExtResource("3_hu5gn"), ExtResource("4_afa3c"), ExtResource("5_yt02j")])
 player = NodePath("CharacterBody2D")
