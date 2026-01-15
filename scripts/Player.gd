@@ -20,6 +20,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	super.set_physics_process(_delta)
 
 	# movement
 	var input_direction = Vector2(

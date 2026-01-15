@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ytt67m4hw7ah"]
+[gd_scene load_steps=11 format=3 uid="uid://ytt67m4hw7ah"]
 
 [ext_resource type="Script" uid="uid://c1w2ojsd7pywp" path="res://scripts/WorldGenerator.gd" id="1_kwui4"]
 [ext_resource type="Script" uid="uid://bphs21oy1tfeg" path="res://scripts/biome.gd" id="2_6vb71"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://er018ctlys3d" path="res://resources/biomes/ice.tres" id="3_hu5gn"]
 [ext_resource type="Resource" uid="uid://bmsl2nblwkgdy" path="res://resources/biomes/default.tres" id="4_afa3c"]
 [ext_resource type="Resource" uid="uid://qsaek5o1au2t" path="res://resources/biomes/sand.tres" id="5_yt02j"]
+[ext_resource type="Script" uid="uid://qiorvu7b6avu" path="res://scripts/camera_move.gd" id="6_p2mr4"]
 [ext_resource type="Texture2D" uid="uid://cdanpllq03pax" path="res://sprites/worldgensprites.png" id="7_trtwv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1i0hr"]
@@ -141,20 +142,28 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_1i0hr")
 
 [node name="worldGenerator" type="Node2D" node_paths=PackedStringArray("player")]
+texture_filter = 1
 script = ExtResource("1_kwui4")
 biomes = Array[ExtResource("2_6vb71")]([ExtResource("3_hu5gn"), ExtResource("4_afa3c"), ExtResource("5_yt02j")])
 player = NodePath("CharacterBody2D")
 load_distance = 2
 
+[node name="Camera2D" type="Camera2D" parent="."]
+texture_filter = 1
+script = ExtResource("6_p2mr4")
+target_path = NodePath("../CharacterBody2D")
+
 [node name="CharacterBody2D" parent="." node_paths=PackedStringArray("worldGenerator") instance=ExtResource("3_gcga7")]
+texture_filter = 1
 worldGenerator = NodePath("..")
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-position_smoothing_enabled = true
-
 [node name="TileMap" type="TileMap" parent="."]
-texture_filter = 2
+z_index = 1
+texture_filter = 1
 tile_set = SubResource("TileSet_ont48")
 format = 2
 layer_0/z_index = -2
 layer_1/name = "Layer1"
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+blend_mode = 1

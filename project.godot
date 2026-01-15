@@ -11,13 +11,23 @@ config_version=5
 [application]
 
 config/name="wordlgen"
-run/main_scene="res://worldgen.tscn"
-config/features=PackedStringArray("4.4", "Forward Plus")
+run/main_scene="uid://ytt67m4hw7ah"
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 BlockManager="*res://scripts/block_manager.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
+window/size/window_width_override=1920
+window/size/window_height_override=1080
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [input]
 
@@ -57,5 +67,6 @@ MWD={
 textures/canvas_textures/default_texture_filter=0
 textures/default_filters/anisotropic_filtering_level=0
 viewport/hdr_2d=true
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true

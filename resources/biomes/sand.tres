@@ -17,4 +17,3 @@ script = ExtResource("1_bo8cq")
 freq = 0.2
 tiles = Array[ExtResource("2_qe0rf")]([ExtResource("3_6wo77"), ExtResource("4_j44x1")])
 ores = Array[ExtResource("1_lexex")]([SubResource("Resource_l8jvu")])
-ore_frequency = 0.1

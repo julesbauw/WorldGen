@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bh4hed165gdq7"]
+[gd_scene load_steps=32 format=3 uid="uid://bh4hed165gdq7"]
 
 [ext_resource type="Script" uid="uid://c4ec3c2vjd287" path="res://scripts/Player.gd" id="1_l5num"]
 [ext_resource type="Texture2D" uid="uid://xb1pf61l3pnp" path="res://sprites/robot_animations.png" id="2_qbpdx"]
@@ -449,6 +449,18 @@ _data = {
 &"walk_up": SubResource("Animation_jg6tb")
 }
 
+[sub_resource type="Gradient" id="Gradient_g2els"]
+offsets = PackedFloat32Array(0, 0.13108614, 0.9962547)
+colors = PackedColorArray(0.9737828, 0.9737828, 0.9737828, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qhqgy"]
+gradient = SubResource("Gradient_g2els")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.82051283, 0.14529915)
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_l5num")
 speed = 200.0
@@ -473,5 +485,8 @@ parameters/walk/blend_position = Vector2(-0.774979, 0.117021)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_n1pr7")
+&"": SubResource("AnimationLibrary_n1pr7")
 }
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_qhqgy")

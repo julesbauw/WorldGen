@@ -6,12 +6,14 @@ extends Camera2D
 var target: Node2D
 
 func _ready():
+	make_current()
 	if target_path != null:
 		target = get_node(target_path)
 
-func _process(delta):
+func _physics_process(delta: float) -> void:
 	if target:
 		var target_position = target.global_position
-        # Smoothly interpolate the camera's position toward the player's position
+
 		global_position = global_position.lerp(target_position, follow_speed * delta)
+
 		global_position = global_position.round()
