@@ -51,6 +51,15 @@ func _ready() -> void:
 	load_chunks(Vector2i(0,0))
 	current_player_chunk = get_player_chunk()
 
+func get_block_at(chunk_coord:Vector2i,coord:Vector2i) -> Block:
+	if !(chunk_coord in loaded_chunks.keys()):
+		return null
+
+	if loaded_chunks[chunk_coord][coord.x][coord.y] == 0:
+		return null
+	
+	return BlockManager.block_map.get(loaded_chunks[chunk_coord][coord.x][coord.y])
+
 func set_tile(chunk_coord:Vector2i,coord:Vector2i,tile_value:int):
 	if !(chunk_coord in loaded_chunks.keys()):
 		return

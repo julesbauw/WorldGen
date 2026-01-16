@@ -1,5 +1,6 @@
 extends Entity
 
+class_name Player
 
 const idle_node_path = "parameters/idle/blend_position"
 
@@ -7,16 +8,27 @@ const walk_node_path = "parameters/walk/blend_position"
 
 const start_direction:Vector2 = Vector2(0,1)
 
-var selected_block = 1
 
 @onready var animation_tree = $AnimationTree
 @onready var animation_state_machine:AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
+
+var inventory:Inventory
+
+var inventory_slot:int
+
+const INVENTORY_SIZE:int = 10
 
 func _ready() -> void:
 	animation_tree.set(idle_node_path,start_direction)
 	animation_tree.set("parameters/conditions/walk",false)
 	animation_tree.set("parameters/conditions/idle",true)
 
+
+	inventory = Inventory.new()
+	inventory.size = INVENTORY_SIZE
+	var item_pickaxe:Pickaxe = Pickaxe.new()
+
+	inventory.add_item(item_pickaxe)
 
 
 func _physics_process(_delta: float) -> void:
@@ -39,18 +51,17 @@ func _physics_process(_delta: float) -> void:
 	#actions
 
 	if Input.is_action_just_released("MWU"):
-		selected_block = fposmod((selected_block + 1),BlockManager.block_map.size())
-		print(selected_block)
+		inventory_slot = int(fposmod((inventory_slot + 1),len(inventory.item_list)))
 
 	if Input.is_action_just_released("MWD"):
-		selected_block = fposmod((selected_block - 1),BlockManager.block_map.size())
-		print(selected_block)
+		inventory_slot = int(fposmod((inventory_slot - 1),len(inventory_slot)))
+		print(inventory_slot)
 
 	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
-		set_block(get_global_mouse_position(),0)
-	
+		inventory.get_item(inventory_slot).left_action(self)
+		
 	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)):
-		set_block(get_global_mouse_position(),selected_block)
+		inventory.get_item(inventory_slot).right_action(self)
 	
 
 

@@ -166,4 +166,5 @@ layer_0/z_index = -2
 layer_1/name = "Layer1"
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.9
 blend_mode = 1

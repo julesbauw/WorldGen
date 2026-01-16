@@ -7,3 +7,14 @@ extends Resource
 @export var block_location:Vector2i
 
 @export var is_empty:bool = false
+
+
+
+func get_item() -> BlockItem:
+
+    var item = BlockItem.new()
+
+    item.block = self
+    item.item_name = name
+
+    return item

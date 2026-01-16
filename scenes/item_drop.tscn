@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://eig0ujob43x1"]
+
+[ext_resource type="Script" uid="uid://bi57e1vmy1qxs" path="res://item_drop.gd" id="1_gvv6n"]
+[ext_resource type="Texture2D" uid="uid://bjp70sdj4to5j" path="res://icon.svg" id="2_xsgl2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_an6nj"]
+radius = 9.0
+
+[node name="item_drop" type="Node2D"]
+script = ExtResource("1_gvv6n")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_an6nj")
+debug_color = Color(0.72761345, 0, 0.15534955, 0.41960785)
+
+[node name="Icon" type="Sprite2D" parent="Area2D"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_xsgl2")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
