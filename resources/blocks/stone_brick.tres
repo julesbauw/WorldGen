@@ -7,4 +7,3 @@ script = ExtResource("1_58els")
 name = "stone brick"
 block_number = 10
 block_location = Vector2i(10, 6)
-is_empty = false

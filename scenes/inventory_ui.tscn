@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs2b0t1b6our0"]
+
+[ext_resource type="Script" uid="uid://bijuhhmoha2qo" path="res://scripts/UI/inventory_ui.gd" id="1_tahbm"]
+[ext_resource type="PackedScene" uid="uid://dsb3agbc4imp6" path="res://scenes/inventory_item_ui.tscn" id="2_ylkvr"]
+
+[node name="InventoryUI" type="Control" node_paths=PackedStringArray("h_box")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tahbm")
+h_box = NodePath("HBoxContainer")
+item_panel = ExtResource("2_ylkvr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="Inventory_item_UI" parent="HBoxContainer" instance=ExtResource("2_ylkvr")]
+layout_mode = 2
+
+[node name="Inventory_item_UI2" parent="HBoxContainer" instance=ExtResource("2_ylkvr")]
+layout_mode = 2

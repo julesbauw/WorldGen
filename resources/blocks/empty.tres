@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="Block" load_steps=2 format=3 uid="uid://crah117s7tafj"]
+[gd_resource type="Resource" script_class="Block" load_steps=3 format=3 uid="uid://crah117s7tafj"]
 
 [ext_resource type="Script" uid="uid://cnpbc3n71wib7" path="res://scripts/block.gd" id="1_n2d8x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4uop"]
 
 [resource]
 script = ExtResource("1_n2d8x")
 name = "empty"
-block_number = 0
 block_location = Vector2i(9, 0)
+inevtory_image = SubResource("AtlasTexture_j4uop")
 is_empty = true

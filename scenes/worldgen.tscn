@@ -1,0 +1,57 @@
+[gd_scene load_steps=11 format=3 uid="uid://ytt67m4hw7ah"]
+
+[ext_resource type="Script" uid="uid://c1w2ojsd7pywp" path="res://scripts/WorldGenerator.gd" id="1_165yu"]
+[ext_resource type="Script" uid="uid://bphs21oy1tfeg" path="res://scripts/biome.gd" id="2_fv5f0"]
+[ext_resource type="Resource" uid="uid://er018ctlys3d" path="res://resources/biomes/ice.tres" id="3_ka702"]
+[ext_resource type="Resource" uid="uid://bmsl2nblwkgdy" path="res://resources/biomes/default.tres" id="4_24ifi"]
+[ext_resource type="Resource" uid="uid://qsaek5o1au2t" path="res://resources/biomes/sand.tres" id="5_otfpg"]
+[ext_resource type="Script" uid="uid://qiorvu7b6avu" path="res://scripts/camera_move.gd" id="6_g6ly5"]
+[ext_resource type="PackedScene" uid="uid://bh4hed165gdq7" path="res://scenes/player.tscn" id="7_enwmb"]
+[ext_resource type="TileSet" uid="uid://dk8pq2a2xyic1" path="res://resources/tilemap/tiles.tres" id="8_iii3g"]
+[ext_resource type="PackedScene" uid="uid://cs2b0t1b6our0" path="res://scenes/inventory_ui.tscn" id="9_83lj7"]
+[ext_resource type="Script" uid="uid://bijuhhmoha2qo" path="res://scripts/UI/inventory_ui.gd" id="10_qabrv"]
+
+[node name="worldGenerator" type="Node2D" node_paths=PackedStringArray("player")]
+texture_filter = 1
+script = ExtResource("1_165yu")
+biomes = Array[ExtResource("2_fv5f0")]([ExtResource("3_ka702"), ExtResource("4_24ifi"), ExtResource("5_otfpg")])
+player = NodePath("CharacterBody2D")
+load_distance = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+texture_filter = 1
+script = ExtResource("6_g6ly5")
+target_path = NodePath("../CharacterBody2D")
+
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("inventory_ui", "worldGenerator") instance=ExtResource("7_enwmb")]
+texture_filter = 1
+inventory_ui = NodePath("../CanvasLayer/Control/InventoryUI")
+worldGenerator = NodePath("..")
+
+[node name="TileMap" type="TileMap" parent="."]
+z_index = 1
+texture_filter = 1
+tile_set = ExtResource("8_iii3g")
+format = 2
+layer_0/z_index = -2
+layer_1/name = "Layer1"
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.04
+blend_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="InventoryUI" parent="CanvasLayer/Control" instance=ExtResource("9_83lj7")]
+layout_mode = 1
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+script = ExtResource("10_qabrv")

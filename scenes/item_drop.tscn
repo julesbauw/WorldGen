@@ -1,22 +1,52 @@
-[gd_scene load_steps=4 format=3 uid="uid://eig0ujob43x1"]
+[gd_scene load_steps=5 format=3 uid="uid://eig0ujob43x1"]
 
 [ext_resource type="Script" uid="uid://bi57e1vmy1qxs" path="res://item_drop.gd" id="1_gvv6n"]
 [ext_resource type="Texture2D" uid="uid://bjp70sdj4to5j" path="res://icon.svg" id="2_xsgl2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_an6nj"]
-radius = 9.0
+radius = 28.85
 
-[node name="item_drop" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_gvv6n"]
+radius = 40.0
+
+[node name="item_drop" type="Node2D" node_paths=PackedStringArray("icon", "second_icon", "third_icon")]
 script = ExtResource("1_gvv6n")
+icon = NodePath("core/Icon")
+second_icon = NodePath("core/Icon2")
+third_icon = NodePath("core/Icon3")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="core" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="core"]
 shape = SubResource("CircleShape2D_an6nj")
-debug_color = Color(0.72761345, 0, 0.15534955, 0.41960785)
+debug_color = Color(0, 0, 0.8235294, 1)
 
-[node name="Icon" type="Sprite2D" parent="Area2D"]
-scale = Vector2(0.15, 0.15)
+[node name="Icon2" type="Sprite2D" parent="core"]
+position = Vector2(11.999999, 3)
+rotation = 0.7853982
+scale = Vector2(0.32, 0.32)
 texture = ExtResource("2_xsgl2")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="Icon3" type="Sprite2D" parent="core"]
+position = Vector2(0, 2)
+rotation = -0.7853982
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_xsgl2")
+
+[node name="Icon" type="Sprite2D" parent="core"]
+rotation = 0.7853982
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_xsgl2")
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-4, -1)
+shape = SubResource("CircleShape2D_gvv6n")
+debug_color = Color(0.9895709, 0, 0.29434362, 0.41960785)
+
+[connection signal="area_entered" from="core" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="core" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="Area2D2" to="." method="_on_magnetic_area_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_magnetic_area_body_entered"]
+[connection signal="body_exited" from="Area2D2" to="." method="_on_magnetic_area_body_exit"]

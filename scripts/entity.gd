@@ -32,7 +32,7 @@ func get_block(coord:Vector2) -> Block:
 
 func remove_block():
 
-	var item_drop = item_drop_scene.instantiate() as ItemBlock
+	var item_drop = item_drop_scene.instantiate() as ItemDrop
 	var block := get_block(get_global_mouse_position())
 
 	if not block:

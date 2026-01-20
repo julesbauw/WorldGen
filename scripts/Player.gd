@@ -12,6 +12,8 @@ const start_direction:Vector2 = Vector2(0,1)
 @onready var animation_tree = $AnimationTree
 @onready var animation_state_machine:AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 
+@export var inventory_ui:InventoryUI
+
 var inventory:Inventory
 
 var inventory_slot:int
@@ -25,6 +27,8 @@ func _ready() -> void:
 
 
 	inventory = Inventory.new()
+	inventory.add_listener(inventory_ui)
+	inventory_ui.inventory = inventory
 	inventory.size = INVENTORY_SIZE
 	var item_pickaxe:Pickaxe = Pickaxe.new()
 
@@ -54,7 +58,7 @@ func _physics_process(_delta: float) -> void:
 		inventory_slot = int(fposmod((inventory_slot + 1),len(inventory.item_list)))
 
 	if Input.is_action_just_released("MWD"):
-		inventory_slot = int(fposmod((inventory_slot - 1),len(inventory_slot)))
+		inventory_slot = int(fposmod((inventory_slot - 1),len(inventory.item_list)))
 		print(inventory_slot)
 
 	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
