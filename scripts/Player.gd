@@ -56,17 +56,31 @@ func _physics_process(_delta: float) -> void:
 
 	if Input.is_action_just_released("MWU"):
 		inventory_slot = int(fposmod((inventory_slot + 1),len(inventory.item_list)))
+		inventory.selected_item = inventory_slot
 
 	if Input.is_action_just_released("MWD"):
 		inventory_slot = int(fposmod((inventory_slot - 1),len(inventory.item_list)))
-		print(inventory_slot)
-
+		inventory.selected_item = inventory_slot
 	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
 		inventory.get_item(inventory_slot).left_action(self)
 		
 	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)):
 		inventory.get_item(inventory_slot).right_action(self)
+
+
+func place_block_if_possible(coord:Vector2,block_number:int):
+
+	# round position
+	var coord_i:Vector2i = (coord / worldGenerator.tilesize).floor()
+
+	var block_chunk = (coord / (worldGenerator.chunk_size * worldGenerator.tilesize)).floor()
+	var block_coord = Vector2i(posmod(coord_i.x,worldGenerator.chunk_size),posmod(coord_i.y,worldGenerator.chunk_size))
 	
+	worldGenerator.set_tile(block_chunk,block_coord,block_number)
+
+func place_block(block:Block):
+	inventory.check_empty_items()
+	place_block_if_possible(get_global_mouse_position(),block.block_number)
 
 
 func pick_new_state(direction:Vector2):

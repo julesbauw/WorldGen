@@ -6,6 +6,22 @@ var item_list:Array[Item]
 
 var size:int
 
+var selected_item:int:
+	set(value): 
+		selected_item = value
+		update_listeners()
+
+func _init() -> void:
+	item_list.resize(size)
+
+func check_empty_items():
+
+	for i in range(len(item_list)):
+		if item_list[i]:
+			if item_list[i].amount <= 0:
+				item_list[i].free()
+				item_list[i] = null
+	update_listeners()
 
 func add_item(new_item:Item):
 	

@@ -46,7 +46,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	
 	var player:Player = body as Player
 	player.inventory.add_item(item)
-	player.inventory.print_inventory()
+
 	queue_free()
 
 func _has_priority(other:ItemDrop):

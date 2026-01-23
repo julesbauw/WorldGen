@@ -12,6 +12,8 @@ const tilesize = 32
 @export var load_distance:int
 @export var world_seed:int
 
+@export var tilemap:TileMap
+
 var loaded_chunks: Dictionary
 var current_player_chunk:Vector2i
 
@@ -65,9 +67,9 @@ func set_tile(chunk_coord:Vector2i,coord:Vector2i,tile_value:int):
 		return
 	loaded_chunks[chunk_coord][coord.x][coord.y] = tile_value
 	if tile_value == 0:
-		$TileMap.erase_cell(wall_layer,Vector2i(chunk_size * chunk_coord.x + coord.x,chunk_size * chunk_coord.y + coord.y))
+		tilemap.erase_cell(wall_layer,Vector2i(chunk_size * chunk_coord.x + coord.x,chunk_size * chunk_coord.y + coord.y))
 	else:
-		$TileMap.set_cell(wall_layer,Vector2i(chunk_size * chunk_coord.x + coord.x,chunk_size * chunk_coord.y + coord.y),1,get_block_vector(tile_value)) 
+		tilemap.set_cell(wall_layer,Vector2i(chunk_size * chunk_coord.x + coord.x,chunk_size * chunk_coord.y + coord.y),1,get_block_vector(tile_value)) 
 
 
 
@@ -75,7 +77,7 @@ func remove_chunk(coord:Vector2i):
 	save_chunk_file(coord)
 	for x in chunk_size:
 		for y in chunk_size:
-			$TileMap.erase_cell(wall_layer,Vector2i(chunk_size * coord.x + x,chunk_size * coord.y + y))
+			tilemap.erase_cell(wall_layer,Vector2i(chunk_size * coord.x + x,chunk_size * coord.y + y))
 
 func unload_chunks():		
 	var removed = []
@@ -122,8 +124,8 @@ func load_chunk(coord:Vector2i):
 		
 	for x in chunk_size:
 		for y in chunk_size:
-			#$TileMap.set_cell(floor_layer,Vector2i(chunk_size * coord.x + x,chunk_size * coord.y + y),0,Vector2i(0,0))
-			$TileMap.set_cell(wall_layer,Vector2i(chunk_size * coord.x + x,chunk_size * coord.y + y),1,get_block_vector(loaded_chunks[coord][x][y]))
+			#tilemap.set_cell(floor_layer,Vector2i(chunk_size * coord.x + x,chunk_size * coord.y + y),0,Vector2i(0,0))
+			tilemap.set_cell(wall_layer,Vector2i(chunk_size * coord.x + x,chunk_size * coord.y + y),1,get_block_vector(loaded_chunks[coord][x][y]))
 	
 func load_chunks(coord:Vector2i):
 		for neighbour in neighbours:

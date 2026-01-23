@@ -11,9 +11,10 @@ func _ready():
 		target = get_node(target_path)
 
 func _physics_process(delta: float) -> void:
+	global_position = global_position.round()
 	if target:
 		var target_position = target.global_position
 
 		global_position = global_position.lerp(target_position, follow_speed * delta)
 
-		global_position = global_position.round()
+		

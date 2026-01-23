@@ -34,8 +34,7 @@ func left_action(user:Entity):
     action when left mouse clicked, user is the Entity using the item, default is just block removing
 
     """
-
-    pass
+    user.remove_block()
 
 func right_action(user:Entity):
     """
